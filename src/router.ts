@@ -1,5 +1,5 @@
 import express, {Application, Request, Response} from 'express';
-import {Productos} from './productos';
+import {productos} from './productos';
 
 const app:Application = express();
 
@@ -7,8 +7,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 const router = express.Router();
-
-const productos = new Productos([{id:1, title: 'Escuadra', price: 233, thumbnail: 'urlImagen'}]);
 
 router.get('/productos', (req:Request, res:Response) => {
     let productosListados = productos.getAllProducts();
@@ -22,7 +20,7 @@ router.get('/productos/:id', (req:Request, res:Response) => {
     res.json(producto);
 })
 
-router.post('/productos', (req:Request, res:Response) => {
+/*router.post('/productos', (req:Request, res:Response) => {
     const {id, title, price, thumbnail} = req.body;
     const producto = {
         id,
@@ -30,9 +28,8 @@ router.post('/productos', (req:Request, res:Response) => {
         price,
         thumbnail
     }
-    let productoIncorporado = productos.addProduct(producto);
-    res.json(productoIncorporado);
-})
+    productos.addProduct(producto);
+})*/
 
 router.put('/productos/:id', (req:Request, res:Response) => {
     const {id} = req.params;
