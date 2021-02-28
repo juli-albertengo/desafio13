@@ -2,7 +2,7 @@ import express, {Application, Request, Response} from 'express';
 import router from './router';
 import path from 'path'
 import {productos} from './productos';
-import { allowedNodeEnvironmentFlags } from 'process';
+import { mensajes } from './mensajes';
 
 const app:Application = express();
 const http = require('http').createServer(app);
@@ -20,6 +20,20 @@ app.get('/', (req:Request, res:Response) => {
     res.sendFile(path.join(__dirname + '/../public/index.html'));
 })
 
+//Desafio clase 13
+io.on('connection', async(socket:any) => {
+    let msjes = await mensajes.getAllMensajes()
+    socket.emit('recibirMensajes', msjes)
+
+    socket.on('nuevoMensaje', (mensaje:any)=> {
+        mensajes.addMensaje(mensaje);
+        io.emit('nuevoMensaje', mensaje);
+    })
+})
+
+
+
+//Desafio clase 12
 io.on('connection', (socket:any) => {
 
     socket.emit('recibirProductos', productos)

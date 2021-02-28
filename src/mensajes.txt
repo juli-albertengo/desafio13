@@ -1,0 +1,17 @@
+[
+   {
+      "email":"juli@hotmail.com",
+      "mensaje":"hola",
+      "time":"28/2/2021 20:30:53"
+   },
+   {
+      "email":"maria@hotmail.com",
+      "mensaje":"hola",
+      "time":"28/2/2021 20:30:53"
+   },
+   {
+      "email":"pedro@hotmail.com",
+      "mensaje":"hola",
+      "time":"28/2/2021 20:30:53"
+   }
+]
